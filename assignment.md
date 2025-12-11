@@ -12,14 +12,26 @@ Answer:
 
 ```bash
 # Step 1: Add the tap-postgres extractor
+meltano add extractor tap-postgres
 
 # Step 2: Configure the extractor with the PostgreSQL connection details (interactive option)
+meltano config tap-postgres set host <POSTGRES_HOST>
+meltano config tap-postgres set port <POSTGRES_PORT>
+meltano config tap-postgres set user <POSTGRES_USER>
+meltano config tap-postgres set password <POSTGRES_PASSWORD>
+meltano config tap-postgres set database <POSTGRES_DATABASE>
 
 # Step 3: Add the target-bigquery loader
+meltano add loader target-bigquery
 
 # Step 4: Configure the BigQuery loader with the project, dataset, and service account details
+meltano config target-bigquery set project_id <BIGQUERY_PROJECT_ID>
+meltano config target-bigquery set dataset <BIGQUERY_DATASET>
+meltano config target-bigquery set credentials_path <PATH_TO_SERVICE_ACCOUNT_JSON>
 
 # Step 5: Run the pipeline
+meltano run tap-postgres target-bigquery
+
 
 ```
 
